@@ -13,8 +13,6 @@ async function createSession(userId = "", userAgent = "") {
 async function reIssueAccessToken(refreshToken = "") {
   const { decoded } = verifyJwt(refreshToken);
 
-  console.log("Decoded: ",decoded)
-
   if (!decoded || !get(decoded, "session")) return false;
 
   const session = await SessionModel.findById(get(decoded, "session"));
@@ -34,7 +32,7 @@ async function reIssueAccessToken(refreshToken = "") {
       expiresIn: process.env.ACCESS_TOKEN_TTL,
     }
   );
-    console.log("Reissued accesstoken: ", accessToken)
+  console.log("Reissued accesstoken: ", accessToken);
   return accessToken;
 }
 

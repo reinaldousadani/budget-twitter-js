@@ -8,7 +8,6 @@ const {
 
 async function getTweetsHandler(req, res) {
   const result = await getTweets();
-  console.log(result);
   return res.send(result);
 }
 
@@ -18,8 +17,6 @@ async function createTweetHandler(req, res) {
   const body = req.body;
 
   const tweet = await createTweet({ ...body, user: userId });
-
-  console.log(tweet);
 
   return res.send(tweet);
 }
@@ -38,18 +35,12 @@ async function updateTweetHandler(req, res) {
   }
 
   if (String(tweet.user) !== userId) {
-    console.log("tweet", tweet);
-    console.log("tweetUsr: ", tweet.user);
-    console.log("loggedInUsr: ", userId);
     return res.sendStatus(403);
   }
 
   const updatedTweet = await updateTweet({ _id: tweetId }, update, {
     new: true,
   });
-
-  console.log("userId: ", userId);
-  console.log("tweetId: ", tweetId);
 
   return res.send(updatedTweet);
 }
