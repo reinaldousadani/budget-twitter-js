@@ -27,9 +27,6 @@ async function createSessionHandler(req, res) {
     { expiresIn: process.env.REFRESH_TOKEN_TTL }
   );
 
-  console.log("decoded access: ", verifyJwt(accessToken));
-  console.log("decoded refresh: ", verifyJwt(refreshToken));
-
   res.cookie("access-token", accessToken,{
     maxAge: 3.154e10, //setahun tapi expire 15m
     httpOnly: true,

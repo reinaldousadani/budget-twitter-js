@@ -6,6 +6,7 @@ async function connect() {
     console.log("DB Connected");
   } catch (error) {
     console.error("Can't connect to DB");
+    console.log("DB URI: ", process.env.DB_URI_LOCAL);
     process.exit(1);
   }
 }

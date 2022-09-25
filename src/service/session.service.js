@@ -17,7 +17,7 @@ async function reIssueAccessToken(refreshToken = "") {
 
   const session = await SessionModel.findById(get(decoded, "session"));
 
-  if (!session.valid || !session) return false;
+  if (!session || !session.valid) return false;
 
   const user = await findUser({ _id: session.user });
 
